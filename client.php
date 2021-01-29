@@ -39,11 +39,11 @@
               </div>  
               <table class="table mt-4" id="pg1">
                 <thead class="thead-dark">
-                  <tr>
+                  <tr class="theadtr">
                     <th scope="col">COD</th>
                     <th scope="col">NOME</th>
                     <th scope="col">CNPJ/CPF</th>
-                    <th scope="col">ENDEREÇO</th>
+                    <th scope="col">EMAIL</th>
                     <th scope="col">CONTATO</th>
                     <th scope="col" class="view">VIEW</th>
                   </tr>

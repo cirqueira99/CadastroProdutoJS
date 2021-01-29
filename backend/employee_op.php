@@ -11,15 +11,8 @@
         $endereco = $_POST["inputAddress"];
         $cidade = $_POST["inputCity"];
         $estado = $_POST["inputState"];
-        $end = "$endereco "." $cidade ". "$estado";
-        $carteira = $_POST["carteira"];
-        $salario = $_POST["salario"];
-        $cargo = $_POST["cargo"];
-        $banco = $_POST["banco"];
-        $agencia = $_POST["agencia"];
-        $conta = $_POST["conta"];
-        $bac = "$banco "."$agencia "."$conta ";
-        
+        $end = "$endereco "." $cidade ". "$estado";        
+        $cargo = $_POST["cargo"];       
         $username = $_POST["username"];
         $senha =  md5($_POST["senha"]);
         $categoria = $_POST["categoria"];
@@ -28,9 +21,9 @@
             if( isset( $_POST["employeeName"] ) ){
                 
                 $operacao_register_fun = "INSERT INTO funcionarios 
-                (nome, cpf, endereco, email, contato, n_carteira, conta_banco, salario,	cargo) 
+                (nome, cpf, endereco, email, contato, cargo) 
                 VALUES 
-                ('$nome', '$cpf', '$end', '$email', '$contato', '$carteira', '$bac', '$salario', '$cargo') ";
+                ('$nome', '$cpf', '$end', '$email', '$contato', '$cargo') ";
 
                 if ($conn->query($operacao_register_fun) === TRUE) {
                     exit();
@@ -71,7 +64,7 @@
                 $id = $_GET["id"];
 
                 $operacao_update = "UPDATE funcionarios SET
-                nome='$nome', cpf='$cpf', endereco='$end', email='$email', contato='$contato', n_carteira='$carteira', conta_banco='$bac', salario='$salario',	cargo='$cargo'
+                nome='$nome', cpf='$cpf', endereco='$end', email='$email', contato='$contato', cargo='$cargo'
                 WHERE id='$id'";
 
                 if ($conn->query($operacao_update) === TRUE) {

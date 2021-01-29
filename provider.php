@@ -35,7 +35,7 @@
           <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
             <table class="table">
               <thead class="thead-dark">
-                <tr>
+                <tr class="theadtr">
                   <th scope="col">ID</th>
                   <th scope="col">NOME</th>
                   <th scope="col">CNPJ/CPF</th>

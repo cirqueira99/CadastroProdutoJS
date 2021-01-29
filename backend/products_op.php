@@ -7,18 +7,16 @@
     if($op == 1){
         if( isset( $_POST["productName"] ) ){
             $nome = $_POST["productName"];
-            $fornecedor = $_POST["selFornecedor"];
-            $lote = [];
-            $lote_s = serialize($lote);
+            $fornecedor = $_POST["selFornecedor"];            
             $qt = 0;
-            $preco_custo = intval($_POST["input_preco_custo"]);
-            $preco_venda = intval($_POST["input_preco_venda"]);
+            $preco_custo = floatval($_POST["input_preco_custo"]);
+            $preco_venda = floatval($_POST["input_preco_venda"]);
             
 
             $operacao_register = "INSERT INTO produtos 
-            (nome, fornecedor, lote_qt, qt, preco_custo, preco_venda) 
+            (nome, fornecedor, qt, preco_custo, preco_venda) 
             VALUES 
-            ('$nome', '$fornecedor', '$lote_s', $qt, $preco_custo, $preco_venda) ";
+            ('$nome', '$fornecedor', $qt, $preco_custo, $preco_venda) ";
 
             if ($conn->query($operacao_register) === TRUE) {
                 header("location: ../products.php");

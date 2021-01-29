@@ -110,25 +110,25 @@
             <form action="../backend/client_op.php?op=2&id=<?php echo $id?>" method="post">
               <div class="group">
                 <div class="form-group col-md-4">
-                  <label for="companyName">Nome do Cliente</label>
+                  <label for="companyName" class="text-secondary">Nome do Cliente</label>
                   <input type="text" class="form-control" id="clientName" name="clientName" value="<?php echo $cli["nome"] ?>">
                 </div>
                 <div class="form-group col-md-4">
-                  <label for="cnpj">CNPJ/CPF</label>
+                  <label for="cnpj" class="text-secondary">CNPJ/CPF</label>
                   <input type="text"  class="form-control" id="cnpj_cpf" name="cnpj_cpf" value="<?php echo $cli["cnpj_cpf"] ?>">
                 </div>
               </div>    
               <div class="group">
                 <div class="form-group col-md-4">
-                  <label for="inputAddress">Endereço</label>
+                  <label for="inputAddress" class="text-secondary">Endereço</label>
                   <input type="text" class="form-control" id="inputAddress" name="inputAddress" placeholder="examplo: Rua dos José Franco, nº 0">
                 </div> 
                 <div class="form-group col-md-4">
-                  <label for="inputCity">Cidade</label>
+                  <label for="inputCity" class="text-secondary">Cidade</label>
                   <input type="text" class="form-control" id="inputCity" name="inputCity">
                 </div>
                 <div class="form-group col-md-3">
-                  <label for="inputState">Estado</label>
+                  <label for="inputState" class="text-secondary">Estado</label>
                   <select class="form-control" id="inputState" name="inputState" >
                     <option selected>Escolher...</option>
                     <?php 
@@ -144,11 +144,11 @@
               </div>
               <div class="group">                    
                   <div class="form-group col-md-4">
-                    <label for="inputCity">Telefone</label>
+                    <label for="inputCity" class="text-secondary">Telefone</label>
                     <input type="text" class="form-control" id="inputPhone" name="inputPhone" value="<?php echo $cli["contato"] ?>">
                   </div>
                   <div class="form-group col-md-4">
-                    <label for="inputCity">E-mail</label>
+                    <label for="inputCity" class="text-secondary">E-mail</label>
                     <input type="text" class="form-control" id=inputEmail" name="inputEmail" value="<?php echo $cli["email"] ?>">
                   </div>
               </div>

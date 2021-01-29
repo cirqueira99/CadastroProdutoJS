@@ -110,25 +110,25 @@
             <form action="../backend/provider_op.php?op=2&id=<?php echo $id?>" method="post">
               <div class="group">
                 <div class="form-group col-md-4">
-                  <label for="companyName">Nome da Empresa</label>
+                  <label for="companyName" class="text-secondary">Nome da Empresa</label>
                   <input type="text" class="form-control" id="providierName" name="providierName" value="<?php echo $forn["nome"]?>">
                 </div>
                 <div class="form-group col-md-4">
-                  <label for="cnpj">CNPJ/CPF</label>
+                  <label for="cnpj" class="text-secondary">CNPJ/CPF</label>
                   <input type="text"  class="form-control" id="cpf_cnpj" name="cpf_cnpj" placeholder="Somente números" value="<?php echo $forn["nome"]?>">
                 </div>
               </div>    
               <div class="group">
                 <div class="form-group col-md-4">
-                  <label for="inputAddress">Endereço</label>
+                  <label for="inputAddress" class="text-secondary">Endereço</label>
                   <input type="text" class="form-control" id="inputAddress" name="inputAddress" placeholder="examplo: Rua dos José Franco, nº 0">
                 </div> 
                 <div class="form-group col-md-4">
-                  <label for="inputCity">Cidade</label>
+                  <label for="inputCity" class="text-secondary">Cidade</label>
                   <input type="text" class="form-control" id="inputCity" name="inputCity">
                 </div>
                 <div class="form-group col-md-3">
-                  <label for="inputState">Estado</label>
+                  <label for="inputState" class="text-secondary">Estado</label>
                   <select class="form-control" id="inputState" name="inputState" >
                     <option selected>Escolher...</option>
                     <?php 
@@ -144,11 +144,11 @@
               </div>
               <div class="group">                    
                   <div class="form-group col-md-4">
-                    <label for="inputCity">Telefone</label>
+                    <label for="inputCity" class="text-secondary">Telefone</label>
                     <input type="text" class="form-control" id="phone" name="phone" value="<?php echo $forn["contato"]?>">
                   </div>
                   <div class="form-group col-md-4">
-                    <label for="inputCity">E-mail</label>
+                    <label for="inputCity" class="text-secondary">E-mail</label>
                     <input type="text" class="form-control" id="email" name="email" value="<?php echo $forn["email"]?>">
                   </div>
               </div>

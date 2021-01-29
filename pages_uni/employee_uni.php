@@ -42,8 +42,8 @@
             </li>                
         </ul>
         
-        <div class="tab-content" id="pills-tabContent">
-            <!-- Mostrar Dados Cliente -->
+        <div class="tab-content ms-3" id="pills-tabContent">
+            <!-- Mostrar Dados Funcionário -->
             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                 <div class="group mt-5 col-10 bg-light">
                     <div class="col-2">
@@ -57,51 +57,42 @@
                         <div class="group">
                             <div class="form-group col-md-3">
                                 <label class="text-secondary">Código</label>
-                                <h5 class="mt-2"><?php echo $func["id"] ?></h5>
+                                <h5 class="mt-2">11</h5>
+                            </div>
+                            <div class="form-group col-md-5">
+                                <label class="text-secondary">Nome</label>
+                                <h5 class="mt-2">José Roberto Henrique Silva</h5>
                             </div>
                             <div class="form-group col-md-4">
-                                <label class="text-secondary">Nome</label>
-                                <h5 class="mt-2"><?php echo $func["nome"] ?></h5>
-                            </div>
-                            <div class="form-group col-md-3">
                                 <label class="text-secondary">CPF</label>
-                                <h5 class="mt-2"><?php echo $func["cpf"] ?></h5>
+                                <h5 class="mt-2">22233311140</h5>
                             </div>
-                            <div class="form-group col-md-2">
-                                <label class="text-secondary">Telefone</label>
-                                <h5 class="mt-2"><?php $tel=$func["contato"]; echo ("(".substr($tel, 0, 2).")".substr($tel, 2, strlen($tel))); ?></h5>
-                            </div>    
+                               
                         </div>
                         <div class="group">
                             <div class="form-group col-md-3">
-                                <label class="text-secondary">E-mail</label>
-                                <h5 class="mt-2"><?php echo $func["email"] ?></h5>
-                            </div>                        
-                            <div class="form-group col-md-4">
-                                <label class="text-secondary">N° Caterira</label>
-                                <h5 class="mt-2"><?php echo $func["n_carteira"] ?></h5>
+                                <label class="text-secondary">Telefone</label>
+                                <h5 class="mt-2">(19)12345678</h5>
                             </div> 
-                            <div class="form-group col-md-3">
-                                <label class="text-secondary">Salário</label>
-                                <h5 class="mt-2"><?php echo ("R$ ".$func["salario"].",00") ?></h5>
-                            </div>
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-md-5">
+                                <label class="text-secondary">E-mail</label>
+                                <h5 class="mt-2">jose@gmail.com</h5>
+                            </div>                        
+                            
+                            <div class="form-group col-md-4">
                                 <label class="text-secondary">Cargo</label>
-                                <h5 class="mt-2"><?php echo $func["cargo"] ?></h5>
+                                <h5 class="mt-2">Atendente</h5>
                             </div>   
                         </div>          
                         <div class="group">
-                            <div class="form-group col-md-7">
+                            <div class="form-group col-md-10">
                                 <label class="text-secondary">Endereço</label>
-                                <h5 class="mt-2"><?php echo $func["endereco"] ?></h5>
+                                <h5 class="mt-2">Rua Almeida SIlva, 43  São Carlos São Paulo (SP)</h5>
                             </div> 
-                            <div class="form-group col-md-5">
-                                <label class="text-secondary">Conta Banco</label>
-                                <h5 class="mt-2"><?php echo $func["conta_banco"] ?></h5>
-                            </div>
+                           
                             
                         </div>
-                    </div>               
+                    </div>              
                 </div>
             
                 <table class="table mt-5">
@@ -137,85 +128,67 @@
                 <form action="../backend/employee_op.php?op=2&id=<?php echo $id;?>" method="post">
                     <div class="group">
                         <div class="form-group col-md-4">
-                        <label for="companyName">Nome do Funcionário</label>
-                        <input type="text" class="form-control" id="employeeName" name="employeeName" value="<?php echo $func["nome"]?>" required>
+                            <label for="companyName" class="text-secondary">Nome do Funcionário</label>
+                            <input type="text" class="form-control" id="employeeName" name="employeeName" value="<?php echo $func["nome"]?>" required>
                         </div>
                         <div class="form-group col-md-3">
-                        <label for="cnpj">CPF</label>
-                        <input type="text" class="form-control" id="cpf" name="cpf" value="<?php echo $func["cpf"]?>" required>
+                            <label for="cnpj" class="text-secondary">CPF</label>
+                            <input type="text" class="form-control" id="cpf" name="cpf" value="<?php echo $func["cpf"]?>" required>
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="inputCity">Telefone</label>
+                            <label for="inputCity" class="text-secondary">Telefone</label>
                             <input type="text" class="form-control" id="inputPhone" name="inputPhone" value="<?php echo $func["contato"]?>" required>
                         </div>
-                        <div class="form-group col-md-3">
-                            <label for="inputCity">E-mail</label>
-                            <input type="text" class="form-control" id="inputEmail" name="inputEmail" value="<?php echo $func["email"]?>" required>
-                        </div>
+                        
                     </div>    
                     <div class="group">
                         <div class="form-group col-md-4">
-                        <label for="inputAddress">Endereço</label>
-                        <input type="text" class="form-control" id="inputAddress" name="inputAddress" placeholder="Rua dos Bobos, nº 0" required>
+                            <label for="inputAddress" class="text-secondary">Endereço</label>
+                            <input type="text" class="form-control" id="inputAddress" name="inputAddress" placeholder="Rua dos Bobos, nº 0" required>
                         </div> 
                         <div class="form-group col-md-3">
-                        <label for="inputCity">Cidade</label>
-                        <input type="text" class="form-control" id="inputCity" name="inputCity" required>
+                            <label for="inputCity" class="text-secondary">Cidade</label>
+                            <input type="text" class="form-control" id="inputCity" name="inputCity" required>
                         </div>
                         <div class="form-group col-md-3">
-                        <label for="inputEstado">Estado</label>
-                        <select class="form-control" id="inputState" name="inputState" required>
-                            <option selected>Escolher...</option>
-                            <?php 
-                            $estados = ["Acre (AC)", "Alagoas (AL)", "Amazonas (AM)", "Bahia (BA)", "Ceará (CE)", "Distrito Federal (DF)", "Espírito Santo (ES)", "Goiás (GO)",
-                                "Maranhão (MA)", "Mato Grosso (MT)", "Mato Grosso do Sul (MS)", "Pará (PA)", "Paraíba (PB)", "Paraná (PR)", "Pernambuco (PE)", "Piauí (PI)", "Rio de Janeiro (RJ)",
-                                "Rio Grande do Norte (RN)", "Rio Grande do Sul (RS)", "Rondônia (RO)", "Roraima (RR)", "Santa Catarina (SC)", "São Paulo (SP)", "Sergipe (SE)", "Tocantins (TO)"];
-                            for($i=0; $i<count($estados); $i++){
-                            ?>
-                            <option><?php echo $estados[$i]; ?></option>
-                            <?php }?>
-                        </select>
+                            <label for="inputEstado" class="text-secondary">Estado</label>
+                            <select class="form-control" id="inputState" name="inputState" required>
+                                <option selected>Escolher...</option>
+                                <?php 
+                                $estados = ["Acre (AC)", "Alagoas (AL)", "Amazonas (AM)", "Bahia (BA)", "Ceará (CE)", "Distrito Federal (DF)", "Espírito Santo (ES)", "Goiás (GO)",
+                                    "Maranhão (MA)", "Mato Grosso (MT)", "Mato Grosso do Sul (MS)", "Pará (PA)", "Paraíba (PB)", "Paraná (PR)", "Pernambuco (PE)", "Piauí (PI)", "Rio de Janeiro (RJ)",
+                                    "Rio Grande do Norte (RN)", "Rio Grande do Sul (RS)", "Rondônia (RO)", "Roraima (RR)", "Santa Catarina (SC)", "São Paulo (SP)", "Sergipe (SE)", "Tocantins (TO)"];
+                                for($i=0; $i<count($estados); $i++){
+                                ?>
+                                <option><?php echo $estados[$i]; ?></option>
+                                <?php }?>
+                            </select>
                         </div>  
                     </div>
                     <div class="group">                    
                         <div class="form-group col-md-4">
-                            <label for="inputCity">Carteira de Trabalho</label>
-                            <input type="text" class="form-control" id="carteira" name="carteira" value="<?php echo $func["n_carteira"]?>" required>
+                            <label for="inputCity" class="text-secondary">E-mail</label>
+                            <input type="text" class="form-control" id="inputEmail" name="inputEmail" value="<?php echo $func["email"]?>" required>
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="inputCity">Salário</label>
-                            <input type="text" class="form-control" id="salario" name="salario" value="<?php echo $func["salario"]?>" required>
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label for="inputCity">Cargo</label>
+                            <label for="inputCity" class="text-secondary">Cargo</label>
                             <input type="text" class="form-control" id="cargo" name="cargo" value="<?php echo $func["cargo"]?>" required>
-                        </div>
+                        </div>                        
                     </div>
                     <div class="group">
-                        <div class="form-group col-md-4">
-                            <label for="inputCity">Banco</label>
-                            <input type="text" class="form-control" id="banco" name="banco" required>
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label for="inputCity">Agência</label>
-                            <input type="text" class="form-control" id="agencia" name="agencia" placeholder="Somente Números" required>
-                        </div>
-                        <div class="form-group col-md-3">
-                            <label for="inputCity">Conta</label>
-                            <input type="text" class="form-control" id="conta" name="conta" placeholder="Somente Números" required>
-                        </div>
+                        
                         </div>
                         <div class="group">    
                         <div class="form-group col-md-4">
-                            <label for="inputCity">Username</label>
+                            <label for="inputCity" class="text-secondary">Username</label>
                             <input type="text" class="form-control" id="username" name="username" value="<?php echo $usuario["user"]?>" required>
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="inputCity">Senha</label>
+                            <label for="inputCity" class="text-secondary">Senha</label>
                             <input type="text" class="form-control" id="senha" name="senha" placeholder="**********" required>
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="inputCity">Categoria</label>
+                            <label for="inputCity" class="text-secondary">Categoria</label>
                             <select class="form-control" id="categoria" name="categoria">
                             <option selected="">Escolha a categoria...</option>
                             <option>Administrador</option>

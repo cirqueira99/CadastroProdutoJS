@@ -46,11 +46,11 @@
                     <div class="col-md-4">
                         <div class="form-group col-md-6">
                             <label class="text-secondary" >Código</label>
-                            <h5 class="mt-2"><?php echo $prod["id"] ?></h5>
+                            <h5 class="mt-2"><?php echo $prod["id"]; ?></h5>
                         </div>
                         <div class="form-group col-md-6 mt-4">
                             <label class="text-secondary">Preço de Custo</label>
-                            <h5 class="mt-2"><?php echo( "R$ ".$prod["preco_custo"].",00" ) ?></h5>
+                            <h5 class="mt-2"><?php echo( "R$ ".$prod["preco_custo"].",00" ); ?></h5>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -60,17 +60,17 @@
                         </div>
                         <div class="form-group col-md-6 mt-4">
                             <label class="text-secondary">Preço de Venda</label>
-                            <h5 class="mt-2"><?php echo( "R$ ".$prod["preco_venda"].",00" ) ?></h5>
+                            <h5 class="mt-2"><?php echo( "R$ ".$prod["preco_venda"].",00" ); ?></h5>
                         </div>
                     </div>
                     <div class="col-md-6">                    
                         <div class="form-group col-md-11">
                             <label class="text-secondary">Fornecedor</label>
-                            <h5 class="mt-2"><?php echo $prod["fornecedor"] ?></h5>
+                            <h5 class="mt-2"><?php echo $prod["fornecedor"]; ?></h5>
                         </div>                        
                         <div class="form-group col-md-6 mt-4">
                             <label class="text-secondary">Estoque</label>
-                            <h5 class="mt-2"><?php echo $prod["qt"] ?></h5>
+                            <h5 class="mt-2"><?php echo $prod["qt"]; ?></h5>
                         </div> 
                     </div>  
                 </div>                
@@ -79,25 +79,27 @@
             <table class="table mt-5">
               <thead class="thead-dark">
                 <tr>
-                  <th scope="col">ID</th>
+                  <th scope="col">CÓD</th>
                   <th scope="col">NOME</th>
-                  <th scope="col">CNPJ/CPF</th>
-                  <th scope="col">E-MAIL</th>
-                  <th scope="col">CONTATO</th>
+                  <th scope="col">FORNECEDOR</th>
+                  <th scope="col">PREÇO CUSTO</th>
+                  <th scope="col">PREÇO VENDA</th>
+                  <th scope="col">ESTOQUE</th>
                   <th scope="col" class="view">VIEW</th>
                 </tr>
               </thead>
               <tbody>    
                 <?php
-                 $operacao_consult =  "SELECT* FROM fornecedor";
+                 $operacao_consult =  "SELECT* FROM produtos";
                  $resultado = mysqli_query($conn, $operacao_consult); 
                  while($linha = mysqli_fetch_assoc($resultado)) { ?>    
                 <tr>
                     <th scope="row"><?php echo $linha["id"] ?></th>  
                     <td><?php echo $linha["nome"] ?></td>
-                    <td><?php echo $linha["cnpj_cpf"] ?></td>
-                    <td><?php echo $linha["email"] ?></td>
-                    <td><?php echo $linha["contato"] ?></td>
+                    <td><?php echo $linha["fornecedor"] ?></td>
+                    <td><?php echo ( "R$ ".$linha["preco_custo"].",00" ); ?></td>
+                    <td><?php echo ( "R$ ".$linha["preco_venda"].",00" ); ?></td>
+                    <td><?php echo $linha["qt"]; ?></td>
                     <td><a href="./pages_uni/providier_uni.php?id=<?php echo $linha["id"] ?>"><i class="fas fa-eye"></i></a></td>
                 </tr>
                 <?php } ?>            
@@ -109,16 +111,16 @@
           <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
           <form action="../backend/products_op.php?op=2&id=<?php echo $id?>" method="post">
               <div class="form-group col-md-4">
-                <label>Nome do Produto</label>
+                <label class="text-secondary">Nome do Produto</label>
                 <input type="text" class="form-control" id="productName" name="productName">
               </div>
               <div class="group">
                 <div class="form-group col-md-4">
-                  <label>Fornecedor</label>
+                  <label class="text-secondary">Fornecedor</label>
                   <select class="form-control" id="selFornecedor" name="selFornecedor" >
                     <option selected>Escolher...</option>
                     <?php 
-                    $operacao_consult =  "SELECT* FROM fornecedor";
+                    $operacao_consult =  "SELECT* FROM fornecedores";
                     $resultado = mysqli_query($conn, $operacao_consult); 
                     while($linha = mysqli_fetch_assoc($resultado)) { ?>
                     <option><?php echo $linha["nome"]; ?></option>
@@ -126,11 +128,11 @@
                   </select>
                 </div> 
                 <div class="form-group col-md-2">
-                  <label>Preço de Custo</label>
+                  <label class="text-secondary">Preço de Custo</label>
                   <input type="number" class="form-control" id="input_preco_custo" name="input_preco_custo" placeholder="00,00">
                 </div>
                 <div class="form-group col-md-2">
-                  <label>Preço de Venda</label>
+                  <label class="text-secondary">Preço de Venda</label>
                   <input type="number"  class="form-control" id="input_preco_venda" name="input_preco_venda" placeholder="00,00">
                 </div>
                 

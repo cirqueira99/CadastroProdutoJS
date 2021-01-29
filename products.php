@@ -40,7 +40,7 @@
             </div>                 
             <table class="table mt-4">
               <thead class="thead-dark">
-                <tr>
+                <tr class="theadtr">
                   <th scope="col">COD</th>
                   <th scope="col">NOME</th>                    
                   <th scope="col">FORNECEDOR</th>

@@ -35,12 +35,11 @@
           <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
             <table class="table" id="pg1">
               <thead class="thead-dark">
-                <tr>
+                <tr class="theadtr">
                   <th scope="col">COD</th>
                   <th scope="col">NOME</th>
                   <th scope="col">CARGO</th>
                   <th scope="col">CPF</th>
-                  <th scope="col">SALÁRIO</th>
                   <th scope="col">CONTATO</th> 
                   <th scope="col" class="view">VIEW</th>                     
                 </tr>
@@ -55,7 +54,6 @@
                       <td><?php echo $linha["nome"] ?></td>
                       <td><?php echo $linha["cargo"] ?></td>
                       <td><?php echo $linha["cpf"] ?></td>
-                      <td><?php echo $linha["salario"] ?></td>
                       <td><?php echo $linha["contato"] ?></td>
                       <td><a href="./pages_uni/employee_uni.php?id=<?php echo $linha["id"] ?>"><i class="fas fa-eye"></i></a></td>
                   </tr>
