@@ -1,9 +1,6 @@
 <?php 
   include "./backend/conexao.php"; 
   
-  $operacao_consult =  "SELECT* FROM produtos";
-  $resultado = mysqli_query($conn, $operacao_consult); 
-  
   session_start();
   $_SESSION["lista"] = array();
 
@@ -39,43 +36,29 @@
         </li>
       </ul>
     
-      <div class="tab-content ms-2" id="pills-tabContent">
+      <div class="tab-content" id="pills-tabContent">
         <!-- Lista de Compras -->
         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-          <h3 class="h6 mt-4">Pesquisar Compras:</h3> 
-          <div class="group mt-4">
-            <div class="col-md-3"><input type="date" class="form-control" id="produto" placeholder="Data Inicial: dd/mm/aaaa"></div>
-            <div class="col-md-3"><input type="date" class="form-control" id="produto" placeholder="Data Final: dd/mm/aaaa"></div>
-            <div><button class="btn btn-primary">Pesquisar</button></div>
-            <div><button class="btn btn-primary ms-4">Mostrar Todas as Compras</button></div>
-          </div>  
-
+          <div class="group mt-5">
+            <div><button class="btn btn-dark" onclick="mostrar_por_data(this);">Exibir Todas as Compras</button></div>
+            <div class="d-flex align-items-end ms-5"><a href="#" onclick="mostrar_botoes_intervalo();">Por Intervalo de Data</a></div>
+            <div class="col-md-2 ms-4" id="div_dt1"></div>
+            <div class="col-md-2" id="div_dt2"></div>
+            <div id="but_pesquisar"></div>
+          </div>
           <table class="table mt-5">
             <thead class="thead-dark">
               <tr class="theadtr">
                 <th scope="col">DATA VENDA</th>
-                <th scope="col">CÓD COMPRA</th>
+                <th scope="col">COMPRA</th>
                 <th scope="col">FUNCIONÁRIO</th>
                 <th scope="col">FORNECEDOR</th>            
-                <th scope="col">FRETE</th>
                 <th scope="col">VALOR TOTAL</th>
                 <th scope="col">DATA ENTREGA</th>
-                <th scope="col">OBS</th>
                 <th scope="col" class="view">VIEW</th>                
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>12/04/21</td>
-                <th scope="row">1</th>
-                <td>José</td>
-                <td>Mark</td>
-                <td>R$25,00</td>
-                <td>12/04/21</td>
-                <td>R$ 105,00</td>
-                <td>Não</td>
-                <td><i class="fas fa-eye"></i></td>
-              </tr>
+            <tbody id="list_compras">       
             </tbody>
           </table>
         </div>
@@ -86,15 +69,17 @@
               <div>                  
                 <select id="selectProduto" class="form-control" name="selectAddProd" style="width:200px;">
                   <option selected="">Escolha um Produto</option>   
-                  <?php while($linha = mysqli_fetch_assoc($resultado)) { ?>
+                  <?php 
+                  $operacao_consult_produtos =  "SELECT* FROM produtos";
+                  $resultado = mysqli_query($conn, $operacao_consult_produtos); 
+                  while($linha = mysqli_fetch_assoc($resultado)) { ?>
                   <option><?php echo $linha["nome"]; ?></option>
-                  <?php }
-                  ?> 
+                  <?php } ?> 
                 </select>                  
               </div>                   
               <div><input type="number" class="form-control ms-5" id="qt" name="qt" placeholder="Quantidade" style="width:100px;"></div>
               
-              <div><button class="btn btn-primary ms-5" onclick="add_itens()" onclick="atualiza_valor();">Adicionar</button></div>
+              <div><button class="btn btn-primary ms-5" onclick="add_itens()">Adicionar</button></div>
             </div>
 
           <div class="group mt-5 justify-content-between">
@@ -138,16 +123,12 @@
                     </div>
                     <div class="col-12 mt-3">
                       <label for="vFrete">Valor do Frete</label>
-                      <input type="number" class="form-control" id="vFrete" name="vFrete" placeholder="00,00" required onblur="atualiza_valores(this)">
+                      <input type="number" class="form-control" id="vFrete" name="vFrete" placeholder="00,00" onblur="atualiza_valores(this)">
                     </div> 
                     <div class="col-12 mt-3">
-                      <label for="forma_pg">Forma Pagamento</label>
-                      <select class="form-control" id="forma_pg" name="forma_pg" required>
-                        <option>Dinheiro Vista</option>
-                        <option>Cartão Crédito</option>
-                        <option>Cartão Débito</option>
-                      </select>
-                    </div> 
+                      <label for="obs">Parcelas</label>
+                      <input type="number" class="form-control" id="parcelas" name="parcelas" placeholder="..." required>
+                    </div>
                   </div>
                   <div class="col-6 ms-3">
                     <div class="col-12">
@@ -164,23 +145,23 @@
                       </select>    
                     </div>
                     <div class="col-12 mt-3">
-                      <label for="obs">Parcelas</label>
-                      <input type="number" class="form-control" id="parcelas" name="parcelas" placeholder="..." required>
-                    </div>
-                    <div class="col-12 mt-3">   
-                      <div class="col-12">
-                        <label for="obs">Observação</label>
-                        <input type="text" class="form-control" id="obs" name="obs" placeholder="..." required>
-                      </div> 
+                      <label for="forma_pg">Forma Pagamento</label>
+                      <select class="form-control" id="forma_pg" name="forma_pg" required>
+                        <option>Dinheiro Vista</option>
+                        <option>Cartão Crédito</option>
+                        <option>Cartão Débito</option>
+                      </select>
+                    </div> 
+                    <div class="col-12 mt-3"> 
+                      <label for="obs">Observação</label>
+                      <input type="text" class="form-control" id="obs" name="obs" placeholder="...">
                     </div>
                   </div>
                 </div>
-                <div class="col-12 mt-5 text-sm-center"><button type="submit" class="btn btn-success">Finalizar Compra</button></div>
+                <div class="col-12 mt-5 text-sm-center"><button type="submit" class="btn btn-primary">Finalizar Compra</button></div>
               </form>
             </div>
-          </div>
-
-                    
+          </div> 
         </div>
         <!--Relatório de compras-->
         <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
@@ -247,7 +228,7 @@
   <div id="dropDownSelect1"></div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 
-  <!-- Funções para inserção de Produtos na lista -->
+
   <script src="./purches_sales.js"></script>
 </body>
 </html>

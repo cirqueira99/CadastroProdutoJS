@@ -55,10 +55,4 @@
             <h4>Valor Total da compra</h4>
             <h3 class='ms-4' id='TotalCompra' style='color:#198754;'>R$ ".$Totaldin.",00</h3>
         </div>";  
-
-    /*<th scope="col"><?php echo $Totalqt; ?></th>       
-   // <th scope="col"><?php echo ("R$ ".$Totaldin.",00" ); ?></th>
-    //$operacao_consult =  "SELECT * FROM `produtos` WHERE `nome` = 'Batata' ";
-    //$resultado = mysqli_query($conn, $operacao_consult);
-    */
 ?>
