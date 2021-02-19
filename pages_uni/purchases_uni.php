@@ -12,8 +12,6 @@
     $operacao_consult =  "SELECT* FROM funcionarios WHERE id = $compra_cod_func";
     $resultado2 = mysqli_query($conn, $operacao_consult); 
     $func = mysqli_fetch_assoc($resultado2);
-    
-    
 ?>
 
 <!DOCTYPE html>
@@ -25,8 +23,7 @@
 	<link rel="stylesheet" type="text/css" href="../css/util.css">
   <link rel="stylesheet" type="text/css" href="../css/main.css">
   <link href="../css/style.min.css" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-
+  <link type="text/css" href="../fontawesome-free-5.9.0-web/css/all.css" rel="stylesheet">
 </head>
 <body>
     <div class="container-login100" style="background-image: url('../images/bg-03.jpg'); justify-content: flex-start; ">
@@ -47,61 +44,70 @@
         <div class="tab-content" id="pills-tabContent">
           <!-- Mostrar Dados da Compra-->
           <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-              <div class="col-12 d-flex align-items-end">
-                <h3 class="text-secondary ms-3" >Compra: #</h3>
+            <div class="group justify-content-between align-items-end">
+              <div class="col-4 d-flex align-items-end">
+                <h3 class="text-secondary ms-3">Compra: #</h3>
                 <h2 class="mt-2 ms-2" id="id_compra" style="color:#007bff;"><?php echo $compra["id"]; ?></h2>
               </div>
-            <div class="group justify-content-around">
-              <div class="col-5 mt-5">
-                <!-- Func e Forn -->
-                <div class="col-12 d-flex flex-column justify-content-center">
-                  <div class="col-md-12 d-flex align-items-end">
-                      <h6 class="text-secondary" >Funcionário:</h6>
-                      <h6 class="ms-3"><?php echo (" ".$func["nome"]); ?></h6>
-                  </div>
-                  <div class="col-md-12 d-flex align-items-end">
-                      <h6 class="text-secondary">Fornecedor:</h6>
-                      <h6 class="ms-3"><?php echo (" ".$compra["nome_fornecedor"]); ?></h6>
-                  </div>
-                </div>
-                <!-- Resumo Compra -->
-                <div class="col-11 mt-3 p-3" style="background-color: #ececec;">
-                  <div class="group justify-content-between"><h6>Total</h6><h6><?php echo money_format('%.2n', $compra["valor_total"]); ?></h6></div>
-                  <div class="group justify-content-between" ><h6>Frete</h6><h6 class="text-warning"><?php echo ("+".money_format('%.2n', $compra["valor_frete"])); ?></h6></div>
-                  <div class="group justify-content-between"><h6>Forma Pagamento</h6><h6><?php echo $compra["forma_pagamento"]; ?></h6></div>
-                  <div class="group justify-content-between"><h6>Parcelas</h6><h6><?php echo $compra["parcelas"]; ?></h6></div>
-                  <div class="group justify-content-between border-top align-items-center" style ="color:green;height:50px">
-                    <h5>Valor Compra</h5><h5><?php echo money_format('%.2n', $compra["valor_total"]); ?></h5>
-                  </div>
-                </div>
-                <!-- Obvervação -->
-                <div class="col-11 mt-3">
-                  <div class="col-md-12 text-secondary">
-                    <h6>Observação:</h6>
-                    <?php 
-                      if( $compra["observacao"]=="" ){ echo "<textarea id='obs' name='obs' placeholder='...' class='border form-control'></textarea> "; }
-                      else{ echo "<textarea id='obs' name='obs' class='border form-control'>".$compra["observacao"]."</textarea> "; }
-                    ?>
-                  </div>
-                </div>
+              <!-- Button Excluir -->
+              <div class="col-2">
+                <button type="submit" class="btn btn-danger" onclick="exluir_compra()">Excluir Compra</button>
               </div>
-              <!-- Datas -->
-              <div class="col-6 mt-5">
-                <div class="d-flex">
-                  <div class="col-5 d-flex align-items-end">
-                    <h6 class="text-secondary" >Data Compra: </h6>
-                    <h5 class="mt-2 ms-3"><?php echo ( date("d/m/Y", strtotime($compra["data_op"])) );  ?></h5>
-                  </div>
-                  <div class="col-6 ms-3 d-flex align-items-end">
-                    <h6 class="text-secondary" >Data Entrega: </h6>
-                    <div class="col-md-7" id="div_dt2">
-                      <?php 
-                        if( $compra["data_entrega"]=="" ){ echo "<input type='date' class='col-5 form-control text-secondary ms-2' id='date2'>"; }
-                        else{ echo "<h5 class='mt-2 ms-3'>"; echo date("d/m/Y", strtotime($compra["data_op"]))."</h5>"; }
-                      ?>
+            </div>
+            <div class="group justify-content-between">
+              <div class="col-5 mt-5">
+                <form action=<?php echo "../backend/purchases_op.php?op=2&id=".$compra["id"];?> method="post">
+                  <!-- Func e Forn -->
+                  <div class="col-12 flex-column justify-content-center">
+                    <div class="col-md-12 mt-4 d-flex align-items-start">
+                        <h6 class="text-secondary mt-1" >Funcionário:</h6>
+                        <input class="ms-3" type="text" value="<?php echo (" ".$func["nome"]); ?>">
+                    </div>
+                    <div class="col-md-12 mt-4 d-flex align-items-start">
+                        <h6 class="text-secondary mt-1">Fornecedor:</h6>
+                        <input class="ms-3" type="text" value="<?php echo (" ".$compra["nome_fornecedor"]); ?>">
                     </div>
                   </div>
-                </div>
+                  <div id="data_obs">
+                    <!-- Datas -->
+                    <div class="col-12 mt-4 d-flex align-items-start">
+                      <h6 class="text-secondary mt-1" >Data Compra: </h6>
+                      <input class="ms-3 fs-16" type="text" value="<?php echo ( date("d/m/Y", strtotime($compra["data_op"])) ); ?>">
+                    </div>
+                    <div class="col-12 mt-4 d-flex align-items-end">
+                      <h6 class="text-secondary" >Data Entrega: </h6>
+                      <div class="col-5">
+                        <?php 
+                          if( $compra["data_entrega"]=="" ){ 
+                            echo "<input class='col-5 ms-2 form-control text-secondary' type='date' name='data2' id='data2'>"; 
+                          }else{ 
+                            echo "<input class='ms-3 fs-16' type='text' name='data2' value=".date('d/m/Y', strtotime($compra["data_entrega"])).">";
+                          }
+                        ?>
+                      </div>
+                    </div>
+                    <!-- Obvervação -->
+                    <div class="col-11 mt-5">
+                      <div class="col-md-12 text-secondary">
+                        <h6>Observação:</h6>
+                        <?php 
+                          if( $compra["observacao"]=="" ){ 
+                            echo "<textarea id='obs' name='obs' placeholder='...' class='col-12 border p-2'></textarea> "; 
+                          }else{ 
+                            echo "<textarea id='obs' name='obs' class='col-12 border p-2'>".$compra["observacao"]."</textarea> ";
+                          }
+                        ?>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Button Salvar -->
+                  <div class="col-12 mt-5 d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                  </div>
+                </form>
+              </div>
+              
+              <div class="col-6 mt-5">
                 <!-- Tabela de escolha de produtos -->
                 <div class="col-11 mt-4">
                   <table class="table">
@@ -133,17 +139,18 @@
                     }?>                      
                   </table> 
                 </div>
+                <!-- Resumo Compra -->
+                <div class="col-11 mt-3 p-3" style="background-color: #ececec;">
+                  <div class="group justify-content-between"><h6>Total</h6><h6><?php echo money_format('%.2n', $compra["valor_total"]); ?></h6></div>
+                  <div class="group justify-content-between" ><h6>Frete</h6><h6 class="text-warning"><?php echo ("+".money_format('%.2n', $compra["valor_frete"])); ?></h6></div>
+                  <div class="group justify-content-between"><h6>Forma Pagamento</h6><h6><?php echo $compra["forma_pagamento"]; ?></h6></div>
+                  <div class="group justify-content-between"><h6>Parcelas</h6><h6><?php echo $compra["parcelas"]; ?></h6></div>
+                  <div class="group justify-content-between border-top align-items-center" style ="color:green;height:50px">
+                    <h5>Valor Compra</h5><h5><?php echo money_format('%.2n', $compra["valor_total"]); ?></h5>
+                  </div>
+                </div>
               </div>
-            </div>
 
-            <!-- Botões -->
-            <div class="group col-12 mt-5 justify-content-around">
-              <div class="col-md-2">
-                <button type="submit" class="btn btn-danger" onclick="exluir_compa()">Excluir Compra</button>
-              </div>
-              <div class="col-md-2">
-                <button type="submit" class="btn btn-primary" onclick="alterar_dados_compra()">Salvar Alterações</button>
-              </div>
               
             </div>
           </div>

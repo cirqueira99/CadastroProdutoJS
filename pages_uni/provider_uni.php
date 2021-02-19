@@ -14,10 +14,10 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">	
 	<link rel="stylesheet" type="text/css" href="../css/util.css">
-    <link rel="stylesheet" type="text/css" href="../css/main.css">
-    <link href="../css/style.min.css" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-
+  <link rel="stylesheet" type="text/css" href="../css/main.css">
+  <link href="../css/style.min.css" rel="stylesheet">
+  <link type="text/css" href="../fontawesome-free-5.9.0-web/css/all.css" rel="stylesheet">
+  <script defer src="../fontawesome-free-5.9.0-web/js/all.js"></script>
 </head>
 <body>
     <div class="container-login100" style="background-image: url('../images/bg-03.jpg'); justify-content: flex-start; ">

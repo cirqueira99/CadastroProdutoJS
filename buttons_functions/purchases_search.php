@@ -26,6 +26,8 @@
             $resultado_f = mysqli_query($conn, $operacao_consult_func);
             $func = mysqli_fetch_assoc($resultado_f);
             $data_op = date( "d/m/Y", strtotime($linha["data_op"]) );
+            if($linha["data_entrega"] ==""){$data_entrega="";}else{$data_entrega = date( "d/m/Y", strtotime($linha["data_entrega"]) );}
+            
             $dinheiro = money_format('%.2n', $linha["valor_total"]);
             echo "<tr>
                     <td>".$data_op."</td>".
@@ -33,7 +35,7 @@
                     "<td>".$func["nome"]."</td>".
                     "<td>".$linha["nome_fornecedor"]."</td>".
                     "<td>".$dinheiro."</td>".
-                    "<td>".$linha['data_entrega']."</td>".
+                    "<td>".$data_entrega."</td>".
                     "<td><a href='./pages_uni/purchases_uni.php?id=".$linha['id']."'><i class='fas fa-eye'></i></a></td>".
                 "</tr>";
         }

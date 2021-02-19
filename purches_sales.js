@@ -83,21 +83,21 @@ function mostrar_botoes_intervalo(){
 }
 
 function alterar_dados_compra(){
-    var id = document.getElementById('id_compra').value;
-    var data = document.getElementById('date2').value;
+    var id = document.getElementById('id_compra').innerText;
+    var data1 = document.getElementById('data1').innerText;
+    var data2 = document.getElementById('data2').value;
     var obs = document.getElementById('obs').value;
     
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            return this.responseText;
+            document.getElementById("data_obs").innerHTML = this.responseText;
         }
     };
-    xmlhttp.open("GET", "./buttons_functions/purchases_alter.php?data="+data+"&obs="+obs, true);
+    xmlhttp.open("GET", "./buttons_functions/purchases_alter.php?id="+id+"&data1="+data1+"&data2="+data2+"&obs="+obs, true);
     xmlhttp.send();
-
 }
 
-function exluir_compa(){
+function exluir_compra(){
 
 }

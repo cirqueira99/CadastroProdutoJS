@@ -2,7 +2,7 @@
 
 <div class="  wrap-login101 p-l-28 p-r-28 p-t-30 p-b-30" >
     <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-        <a href="main.php" <?php if($paginaLink == 'main.php') {echo 'class="nav-link active"';}else{echo 'class="nav-link"';} ?> ><i class="fas fa-home m-r-4"></i>Hoome</a>
+        <a href="main.php" <?php if($paginaLink == 'main.php') {echo 'class="nav-link active"';}else{echo 'class="nav-link"';} ?> ><i class="fas fa-home m-r-4"></i>Home</a>
         <a href="client.php"  <?php if($paginaLink == 'client.php') {echo 'class="nav-link active"';}else{echo 'class="nav-link"';} ?> ><i class="fas fa-user-tag m-r-4"></i>Clientes</a>
         <a href="products.php" <?php if($paginaLink == 'products.php') {echo 'class="nav-link active"';}else{echo 'class="nav-link"';} ?> > <i class="fas fa-boxes m-r-4"></i>Produtos</a>
         <a href="purchases.php" <?php if($paginaLink == 'purchases.php') {echo 'class="nav-link active"';}else{echo 'class="nav-link"';} ?> > <i class="fas fa-shopping-cart m-r-4"></i>Compras</a>
