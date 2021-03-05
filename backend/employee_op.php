@@ -77,7 +77,7 @@
                 $servername = "localhost";
                 $Username = "root";
                 $password = "";
-                $dbname = "JunkSystem";
+                $dbname = "DistribuidoraRio";
                 $conn = new mysqli($servername, $Username, $password, $dbname);
 
                 $operacao_update_user = "UPDATE usuarios SET

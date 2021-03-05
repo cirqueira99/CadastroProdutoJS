@@ -119,39 +119,39 @@
             </div>
             <!-- Relatório dos Clientes-->
             <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-            <form >
-              <!-- Exibir  Todos os Clientes Registrados no Sistema-->
-            <label class="form-check-label" for="flexSwitchCheckCheckedDisabled">Cliente(s)</label>
-            <select class="form-select group m-b-15" aria-label="Default select example">
-                <option value="1">Todos os Clientes</option>
-                <option value="2">Cliente 1</option>
-                <option value="3">Cliente 2</option>
-                <option value="3">Cliente 3</option>
-              </select>
-              <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckCheckedDisabled">
-                <label class="form-check-label" for="flexSwitchCheckCheckedDisabled">Compras</label>
-              </div>
-              <div class="form-check form-switch m-b-10">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                <label class="form-check-label" for="flexSwitchCheckDefault">Endereço</label>
-              </div>
-              <div class="form-check form-switch m-b-10">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                <label class="form-check-label" for="flexSwitchCheckDefault">Telefone</label>
-              </div>
-              <div class="form-check form-switch m-b-10">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                <label class="form-check-label" for="flexSwitchCheckDefault">E-mail</label>
-              </div>
+              <form >
+                <!-- Exibir  Todos os Clientes Registrados no Sistema-->
+                <label class="form-check-label" for="flexSwitchCheckCheckedDisabled">Cliente(s)</label>
+                <select class="form-select group m-b-15" aria-label="Default select example">
+                  <option value="1">Todos os Clientes</option>
+                  <option value="2">Cliente 1</option>
+                  <option value="3">Cliente 2</option>
+                  <option value="3">Cliente 3</option>
+                </select>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckCheckedDisabled">
+                  <label class="form-check-label" for="flexSwitchCheckCheckedDisabled">Compras</label>
+                </div>
+                <div class="form-check form-switch m-b-10">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                  <label class="form-check-label" for="flexSwitchCheckDefault">Endereço</label>
+                </div>
+                <div class="form-check form-switch m-b-10">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                  <label class="form-check-label" for="flexSwitchCheckDefault">Telefone</label>
+                </div>
+                <div class="form-check form-switch m-b-10">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                  <label class="form-check-label" for="flexSwitchCheckDefault">E-mail</label>
+                </div>
 
-              <div class="form-check form-switch m-b-10">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                <label class="form-check-label" for="flexSwitchCheckDefault">CNPJ/CPF</label>
-              </div>
+                <div class="form-check form-switch m-b-10">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                  <label class="form-check-label" for="flexSwitchCheckDefault">CNPJ/CPF</label>
+                </div>
 
-              <button type="submit" class="btn btn-primary mt-5">Gerar</button>
-            </form>                   
+                <button type="submit" class="btn btn-primary mt-5">Gerar</button>
+              </form>                   
           </div>            
 
           </div>

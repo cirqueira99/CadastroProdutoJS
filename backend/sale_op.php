@@ -38,7 +38,7 @@
         $servername = "localhost";
         $username = "root";
         $password = "";
-        $dbname = "JunkSystem";
+        $dbname = "DistribuidoraRio";
         $conn = new mysqli($servername, $username, $password, $dbname);
        
         for( $i=0; $i<count($cod_prods); $i++ ){            

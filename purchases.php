@@ -4,6 +4,15 @@
   session_start();
   $_SESSION["lista"] = array();
 
+  $itens_por_pagina = 4;  // defini número de itens por página
+  $pagina = intval($_GET["p"]);  // pega página atual
+
+  $operacao_consult_compras =  "SELECT* FROM compras";
+  $resultado1 = mysqli_query($conn, $operacao_consult_compras);
+  
+  $num_total = mysqli_num_rows( $resultado1 );  // pega quantidade total de objetos no db
+  $num_paginas = ceil($num_total / $itens_por_pagina);    // define número de páginas
+
 ?>
 
 <!DOCTYPE html>
@@ -59,8 +68,50 @@
               </tr>
             </thead>
             <tbody id="list_compras">       
+              <?php 
+              $operacao_consult_compras_data =  "SELECT* FROM compras ORDER BY id DESC LIMIT $pagina, $itens_por_pagina";
+              $resultado2 = mysqli_query($conn, $operacao_consult_compras_data);
+                while($linha = mysqli_fetch_assoc($resultado2)) {
+                  $cod_func = $linha["cod_vendedor"];
+                  $operacao_consult_func =  "SELECT* FROM funcionarios WHERE id = $cod_func"; // consulta funcionário que realizou a venda 
+                  $resultado_f = mysqli_query($conn, $operacao_consult_func);
+                  $func = mysqli_fetch_assoc($resultado_f);
+                  $data_op = date( "d/m/Y", strtotime($linha["data_op"]) );
+                  if($linha["data_entrega"] ==""){$data_entrega="";}else{$data_entrega = date( "d/m/Y", strtotime($linha["data_entrega"]) );}
+                  $dinheiro = money_format('%.2n', $linha["valor_total"]);
+                
+                  echo "<tr>
+                          <td>".$data_op."</td>".
+                          "<th scope='row'>".$linha['id']."</th>".
+                          "<td>".$func["nome"]."</td>".
+                          "<td>".$linha["nome_fornecedor"]."</td>".
+                          "<td>".$dinheiro."</td>".
+                          "<td>".$data_entrega."</td>".
+                          "<td><a href='./pages_uni/purchases_uni.php?id=".$linha['id']."'><i class='fas fa-eye'></i></a></td>".
+                      "</tr>";
+                }
+              ?>
             </tbody>
           </table>
+          <nav aria-label="Navegação de página exemplo">
+            <ul class="pagination justify-content-end">
+              <?php 
+                echo "<li class='page-item'><a class='page-link' href='./purchases.php?p=1' tabindex='-1'>Primeiro</a>";
+                for( $pag_ant=$pagina-1; $pag_ant<=$pagina-1; $pag_ant++){
+                  if($pag_ant>=1){
+                    echo "<li class='page-item'><a class='page-link' href='./purchases.php?p=".$pag_ant."' tabindex='-1'>".$pag_ant."</a>";
+                  }
+                }
+                echo "<li class='page-item active'><a class='page-link' href='./purchases.php?p=0' tabindex='-1'>".$pagina."</a>";
+                for( $pag_dep=$pagina+1; $pag_dep<=$pagina+1; $pag_dep++){
+                  if($pag_dep<= $num_paginas){
+                    echo "<li class='page-item'><a class='page-link' href='./purchases.php?p=".$pag_dep."' tabindex='-1'>".$pag_dep."</a>";
+                  }
+                }
+                echo "<li class='page-item'><a class='page-link' href='./purchases.php?p=".$num_paginas."' tabindex='-1'>Último</a>";
+              ?>
+            </ul>
+          </nav>
         </div>
         <!-- Registrar Nova Compra -->
         <div class="tab-pane fade show " id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 31-Jan-2021 às 21:20
+-- Tempo de geração: 04-Mar-2021 às 15:03
 -- Versão do servidor: 10.4.8-MariaDB
 -- versão do PHP: 7.3.10
 
@@ -72,10 +72,30 @@ CREATE TABLE `compras` (
 --
 
 INSERT INTO `compras` (`id`, `data_op`, `cod_vendedor`, `nome_fornecedor`, `cod_produtos`, `qt_produtos`, `valor_frete`, `valor_total`, `forma_pagamento`, `parcelas`, `data_entrega`, `observacao`) VALUES
-(13, '2021-01-30', 12, 'FerreroAgro LDTA', 'a:1:{i:0;s:1:\"4\";}', 'a:1:{i:0;s:1:\"5\";}', 20, 75, 'Dinheiro Vista', 1, NULL, 'nada'),
+(13, '2021-01-28', 12, 'FerreroAgro LDTA', 'a:1:{i:0;s:1:\"4\";}', 'a:1:{i:0;s:1:\"5\";}', 20, 75, 'Dinheiro Vista', 1, '2021-02-01', 'O produto chegou no prazo.'),
 (14, '2021-01-30', 12, 'FerreroAgro LDTA', 'a:1:{i:0;s:1:\"4\";}', 'a:1:{i:0;s:2:\"10\";}', 20, 150, 'Dinheiro Vista', 1, NULL, 'nada'),
 (15, '2021-01-31', 12, 'Verdes Distribuidora LDTA', 'a:1:{i:0;s:1:\"1\";}', 'a:1:{i:0;s:1:\"3\";}', 20, 27, 'Cartão Crédito', 1, NULL, ''),
-(16, '2021-01-31', 12, 'Agro Distribuidora LDTA', 'a:1:{i:0;s:1:\"3\";}', 'a:1:{i:0;s:1:\"3\";}', 35, 30, 'Cartão Débito', 2, NULL, '');
+(16, '2021-01-31', 12, 'Agro Distribuidora LDTA', 'a:1:{i:0;s:1:\"3\";}', 'a:1:{i:0;s:1:\"3\";}', 35, 30, 'Cartão Débito', 2, NULL, ''),
+(17, '2021-01-31', 12, 'FerreroAgro LDTA', 'a:1:{i:0;s:1:\"4\";}', 'a:1:{i:0;s:1:\"5\";}', 15, 75, 'Dinheiro Vista', 1, NULL, 'nada'),
+(18, '2021-02-02', 12, 'Verdes Distribuidora LDTA', 'a:3:{i:0;s:1:\"1\";i:1;s:1:\"2\";i:2;s:1:\"3\";}', 'a:3:{i:0;s:1:\"5\";i:1;s:1:\"5\";i:2;s:1:\"5\";}', 25, 195, 'Cartão Crédito', 2, NULL, ''),
+(19, '2021-02-03', 12, 'FerreroAgro LDTA', 'a:1:{i:0;s:1:\"4\";}', 'a:1:{i:0;s:1:\"5\";}', 20, 75, 'Dinheiro Vista', 1, NULL, ''),
+(20, '2021-02-04', 12, 'FerreroAgro LDTA', 'a:1:{i:0;s:1:\"4\";}', 'a:1:{i:0;s:2:\"10\";}', 20, 150, 'Dinheiro Vista', 1, NULL, 'nada'),
+(21, '2021-02-05', 12, 'Verdes Distribuidora LDTA', 'a:1:{i:0;s:1:\"1\";}', 'a:1:{i:0;s:1:\"3\";}', 20, 27, 'Cartão Crédito', 1, NULL, ''),
+(22, '2021-02-05', 12, 'Agro Distribuidora LDTA', 'a:1:{i:0;s:1:\"3\";}', 'a:1:{i:0;s:1:\"3\";}', 35, 30, 'Cartão Débito', 2, NULL, ''),
+(23, '2021-02-06', 12, 'FerreroAgro LDTA', 'a:1:{i:0;s:1:\"4\";}', 'a:1:{i:0;s:1:\"5\";}', 15, 75, 'Dinheiro Vista', 1, NULL, 'nada'),
+(24, '2021-02-07', 12, 'Verdes Distribuidora LDTA', 'a:3:{i:0;s:1:\"1\";i:1;s:1:\"2\";i:2;s:1:\"3\";}', 'a:3:{i:0;s:1:\"5\";i:1;s:1:\"5\";i:2;s:1:\"5\";}', 25, 195, 'Cartão Crédito', 2, NULL, ''),
+(25, '2021-02-09', 12, 'FerreroAgro LDTA', 'a:1:{i:0;s:1:\"4\";}', 'a:1:{i:0;s:1:\"5\";}', 20, 75, 'Dinheiro Vista', 1, NULL, ''),
+(26, '2021-02-10', 12, 'FerreroAgro LDTA', 'a:1:{i:0;s:1:\"4\";}', 'a:1:{i:0;s:2:\"10\";}', 20, 150, 'Dinheiro Vista', 1, NULL, 'nada'),
+(27, '2021-02-11', 12, 'Verdes Distribuidora LDTA', 'a:1:{i:0;s:1:\"1\";}', 'a:1:{i:0;s:1:\"3\";}', 20, 27, 'Cartão Crédito', 1, NULL, ''),
+(28, '2021-02-11', 12, 'Agro Distribuidora LDTA', 'a:1:{i:0;s:1:\"3\";}', 'a:1:{i:0;s:1:\"3\";}', 35, 30, 'Cartão Débito', 2, NULL, ''),
+(29, '2021-02-13', 12, 'FerreroAgro LDTA', 'a:1:{i:0;s:1:\"4\";}', 'a:1:{i:0;s:1:\"5\";}', 15, 75, 'Dinheiro Vista', 1, NULL, 'nada'),
+(30, '2021-02-14', 12, 'Verdes Distribuidora LDTA', 'a:3:{i:0;s:1:\"1\";i:1;s:1:\"2\";i:2;s:1:\"3\";}', 'a:3:{i:0;s:1:\"5\";i:1;s:1:\"5\";i:2;s:1:\"5\";}', 25, 195, 'Cartão Crédito', 2, NULL, ''),
+(31, '2021-02-15', 12, 'FerreroAgro LDTA', 'a:1:{i:0;s:1:\"4\";}', 'a:1:{i:0;s:1:\"5\";}', 20, 75, 'Dinheiro Vista', 1, NULL, ''),
+(32, '2021-02-16', 12, 'FerreroAgro LDTA', 'a:1:{i:0;s:1:\"4\";}', 'a:1:{i:0;s:2:\"10\";}', 20, 150, 'Dinheiro Vista', 1, NULL, 'nada'),
+(33, '2021-02-17', 12, 'Verdes Distribuidora LDTA', 'a:1:{i:0;s:1:\"1\";}', 'a:1:{i:0;s:1:\"3\";}', 20, 27, 'Cartão Crédito', 1, NULL, ''),
+(34, '2021-02-18', 12, 'Agro Distribuidora LDTA', 'a:1:{i:0;s:1:\"3\";}', 'a:1:{i:0;s:1:\"3\";}', 35, 30, 'Cartão Débito', 2, NULL, ''),
+(35, '2021-02-25', 12, 'FerreroAgro LDTA', 'a:1:{i:0;s:1:\"4\";}', 'a:1:{i:0;s:1:\"5\";}', 15, 75, 'Dinheiro Vista', 1, NULL, 'nada'),
+(36, '2021-02-25', 12, 'Verdes Distribuidora LDTA', 'a:3:{i:0;s:1:\"1\";i:1;s:1:\"2\";i:2;s:1:\"3\";}', 'a:3:{i:0;s:1:\"5\";i:1;s:1:\"5\";i:2;s:1:\"5\";}', 25, 195, 'Cartão Crédito', 2, NULL, '');
 
 -- --------------------------------------------------------
 
@@ -145,9 +165,9 @@ CREATE TABLE `produtos` (
 --
 
 INSERT INTO `produtos` (`id`, `nome`, `fornecedor`, `qt`, `preco_custo`, `preco_venda`) VALUES
-(1, 'Batata', 'Verdes Distribuidora LDTA', 5, 9, 20),
-(2, 'Batata Doce', 'Verdes Distribuidora', 5, 20, 30),
-(3, 'Tomate', 'Agro Distribuidora LDTA', 5, 10, 20),
+(1, 'Batata', 'Verdes Distribuidora LDTA', 10, 9, 20),
+(2, 'Batata Doce', 'Verdes Distribuidora', 10, 20, 30),
+(3, 'Tomate', 'Agro Distribuidora LDTA', 10, 10, 20),
 (4, 'Alface', 'FerreroAgro LDTA', 10, 15, 20);
 
 -- --------------------------------------------------------
@@ -263,7 +283,7 @@ ALTER TABLE `clientes`
 -- AUTO_INCREMENT de tabela `compras`
 --
 ALTER TABLE `compras`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de tabela `fornecedores`

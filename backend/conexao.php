@@ -2,7 +2,7 @@
   $servername = "localhost";
   $username = "root";
   $password = "";
-  $dbname = "JunkSystem";
+  $dbname = "DistribuidoraRio";
 
   $conn = new mysqli($servername, $username, $password, $dbname);
 
