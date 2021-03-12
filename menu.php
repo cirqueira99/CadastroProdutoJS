@@ -6,7 +6,7 @@
         <a href="client.php"  <?php if($paginaLink == 'client.php') {echo 'class="nav-link active"';}else{echo 'class="nav-link"';} ?> ><i class="fas fa-user-tag m-r-4"></i>Clientes</a>
         <a href="products.php" <?php if($paginaLink == 'products.php') {echo 'class="nav-link active"';}else{echo 'class="nav-link"';} ?> > <i class="fas fa-boxes m-r-4"></i>Produtos</a>
         <a href="purchases.php?p=1" <?php if($paginaLink == 'purchases.php') {echo 'class="nav-link active"';}else{echo 'class="nav-link"';} ?> > <i class="fas fa-shopping-cart m-r-4"></i>Compras</a>
-        <a href="sales.php" <?php if($paginaLink == 'sales.php') {echo 'class="nav-link active"';}else{echo 'class="nav-link"';} ?> > <i class="fas fa-cash-register m-r-4"></i>Vendas</a>              
+        <a href="sales.php?p=1" <?php if($paginaLink == 'sales.php') {echo 'class="nav-link active"';}else{echo 'class="nav-link"';} ?> > <i class="fas fa-cash-register m-r-4"></i>Vendas</a>              
         <a href="provider.php" <?php if($paginaLink == 'provider.php') {echo 'class="nav-link active"';}else{echo 'class="nav-link"';} ?> > <i class="fas fa-user-tie m-r-4"></i>Fornecedores</a>
         <a href="employee.php" <?php if($paginaLink == 'employee.php') {echo 'class="nav-link active"';}else{echo 'class="nav-link"';} ?> ><i class="fas fa-address-book m-r-4"></i>Funcionários</a>
         <a href="login.php" <?php if($paginaLink == 'login.php') {echo 'class="nav-link active"';}else{echo 'class="nav-link"';} ?> ><i class="fas fa-sign-out-alt m-r-4"></i>Sair</a>

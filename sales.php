@@ -1,11 +1,17 @@
 <?php 
   include "./backend/conexao.php"; 
   
-  $operacao_consult =  "SELECT* FROM produtos";
-  $resultado = mysqli_query($conn, $operacao_consult); 
-  
   session_start();
   $_SESSION["lista"] = array();
+
+  $itens_por_pagina = 4;  // defini número de itens por página
+  $pagina = intval($_GET["p"]);  // pega página atual
+
+  $operacao_consult_compras =  "SELECT* FROM compras";
+  $resultado1 = mysqli_query($conn, $operacao_consult_compras);
+  
+  $num_total = mysqli_num_rows( $resultado1 );  // pega quantidade total de objetos no db
+  $num_paginas = ceil($num_total / $itens_por_pagina);    // define número de páginas
 
 ?>
 
@@ -29,55 +35,83 @@
     <section class="wrap-login100 p-l-55 p-r-55 p-t-30 p-b-30" style="width: 80%;" >
       <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
         <li class="nav-item" role="presentation">
-          <a class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true"><i class="fas fa-history m-r-4"></i>Histórico de Vendas</a>
+          <a class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true"><i class="fas fa-history m-r-4"></i>Histórico de Compras</a>
         </li>               
         <li class="nav-item" role="presentation">
-          <a class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false"><i class="fas fa-cart-plus m-r-4"></i>Registrar Nova Vendas</a>
+          <a class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false"><i class="fas fa-cart-plus m-r-4"></i>Registrar Nova Compra</a>
         </li>
         <li class="nav-item" role="presentation">
           <a class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false"><i class="far fa-file-alt m-r-4"></i>Relatório de Compras</a>
         </li>
       </ul>
     
-      <div class="tab-content ms-2" id="pills-tabContent">
+      <div class="tab-content" id="pills-tabContent">
         <!-- Lista de Compras -->
         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-          <h3 class="h6 mt-4">Pesquisar Compras:</h3> 
-          <div class="group mt-4">
-            <div class="col-md-3"><input type="date" class="form-control" id="produto" placeholder="Data Inicial: dd/mm/aaaa"></div>
-            <div class="col-md-3"><input type="date" class="form-control" id="produto" placeholder="Data Final: dd/mm/aaaa"></div>
-            <div><button class="btn btn-primary">Pesquisar</button></div>
-            <div><button class="btn btn-primary ms-4">Mostrar Todas as Compras</button></div>
-          </div>  
-
+          <div class="group mt-5">
+            <div><button class="btn btn-dark" onclick="mostrar_por_data(this);">Exibir Todas as Compras</button></div>
+            <div class="d-flex align-items-end ms-5"><a href="#" onclick="mostrar_botoes_intervalo();">Por Intervalo de Data</a></div>
+            <div class="col-md-2 ms-4" id="div_dt1"></div>
+            <div class="col-md-2" id="div_dt2"></div>
+            <div id="but_pesquisar"></div>
+          </div>
           <table class="table mt-5">
             <thead class="thead-dark">
               <tr class="theadtr">
                 <th scope="col">DATA VENDA</th>
-                <th scope="col">CÓD COMPRA</th>
+                <th scope="col">COMPRA</th>
                 <th scope="col">FUNCIONÁRIO</th>
                 <th scope="col">FORNECEDOR</th>            
-                <th scope="col">FRETE</th>
                 <th scope="col">VALOR TOTAL</th>
                 <th scope="col">DATA ENTREGA</th>
-                <th scope="col">OBS</th>
                 <th scope="col" class="view">VIEW</th>                
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>12/04/21</td>
-                <th scope="row">1</th>
-                <td>José</td>
-                <td>Mark</td>
-                <td>R$25,00</td>
-                <td>12/04/21</td>
-                <td>R$ 105,00</td>
-                <td>Não</td>
-                <td><i class="fas fa-eye"></i></td>
-              </tr>
+            <tbody id="list_compras">       
+              <?php 
+              $operacao_consult_compras_data =  "SELECT* FROM compras ORDER BY id DESC LIMIT $pagina, $itens_por_pagina";
+              $resultado2 = mysqli_query($conn, $operacao_consult_compras_data);
+                while($linha = mysqli_fetch_assoc($resultado2)) {
+                  $cod_func = $linha["cod_vendedor"];
+                  $operacao_consult_func =  "SELECT* FROM funcionarios WHERE id = $cod_func"; // consulta funcionário que realizou a venda 
+                  $resultado_f = mysqli_query($conn, $operacao_consult_func);
+                  $func = mysqli_fetch_assoc($resultado_f);
+                  $data_op = date( "d/m/Y", strtotime($linha["data_op"]) );
+                  if($linha["data_entrega"] ==""){$data_entrega="";}else{$data_entrega = date( "d/m/Y", strtotime($linha["data_entrega"]) );}
+                  $dinheiro = money_format('%.2n', $linha["valor_total"]);
+                
+                  echo "<tr>
+                          <td>".$data_op."</td>".
+                          "<th scope='row'>".$linha['id']."</th>".
+                          "<td>".$func["nome"]."</td>".
+                          "<td>".$linha["nome_fornecedor"]."</td>".
+                          "<td>".$dinheiro."</td>".
+                          "<td>".$data_entrega."</td>".
+                          "<td><a href='./pages_uni/purchases_uni.php?id=".$linha['id']."'><i class='fas fa-eye'></i></a></td>".
+                      "</tr>";
+                }
+              ?>
             </tbody>
           </table>
+          <nav aria-label="Navegação de página exemplo">
+            <ul class="pagination justify-content-end">
+              <?php 
+                echo "<li class='page-item'><a class='page-link' href='./purchases.php?p=1' tabindex='-1'>Primeiro</a>";
+                for( $pag_ant=$pagina-1; $pag_ant<=$pagina-1; $pag_ant++){
+                  if($pag_ant>=1){
+                    echo "<li class='page-item'><a class='page-link' href='./purchases.php?p=".$pag_ant."' tabindex='-1'>".$pag_ant."</a>";
+                  }
+                }
+                echo "<li class='page-item active'><a class='page-link' href='./purchases.php?p=0' tabindex='-1'>".$pagina."</a>";
+                for( $pag_dep=$pagina+1; $pag_dep<=$pagina+1; $pag_dep++){
+                  if($pag_dep<= $num_paginas){
+                    echo "<li class='page-item'><a class='page-link' href='./purchases.php?p=".$pag_dep."' tabindex='-1'>".$pag_dep."</a>";
+                  }
+                }
+                echo "<li class='page-item'><a class='page-link' href='./purchases.php?p=".$num_paginas."' tabindex='-1'>Último</a>";
+              ?>
+            </ul>
+          </nav>
         </div>
         <!-- Registrar Nova Compra -->
         <div class="tab-pane fade show " id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
@@ -86,15 +120,17 @@
               <div>                  
                 <select id="selectProduto" class="form-control" name="selectAddProd" style="width:200px;">
                   <option selected="">Escolha um Produto</option>   
-                  <?php while($linha = mysqli_fetch_assoc($resultado)) { ?>
+                  <?php 
+                  $operacao_consult_produtos =  "SELECT* FROM produtos";
+                  $resultado = mysqli_query($conn, $operacao_consult_produtos); 
+                  while($linha = mysqli_fetch_assoc($resultado)) { ?>
                   <option><?php echo $linha["nome"]; ?></option>
-                  <?php }
-                  ?> 
+                  <?php } ?> 
                 </select>                  
               </div>                   
               <div><input type="number" class="form-control ms-5" id="qt" name="qt" placeholder="Quantidade" style="width:100px;"></div>
               
-              <div><button class="btn btn-primary ms-5" onclick="add_itens()" onclick="atualiza_valor();">Adicionar</button></div>
+              <div><button class="btn btn-primary ms-5" onclick="add_itens()">Adicionar</button></div>
             </div>
 
           <div class="group mt-5 justify-content-between">
@@ -128,7 +164,7 @@
             </div>
             <!-- Inserção de Dados -->
             <div class="col-5">
-              <form action="./backend/purchases_op.php" method="post">
+              <form action="./backend/purchases_op.php?op=1" method="post">
                 <div class="d-flex col-12 bg-light justify-content-around">
                   <div class="col-5"> 
                     <div class="col-12">
@@ -169,16 +205,14 @@
                     </div> 
                     <div class="col-12 mt-3"> 
                       <label for="obs">Observação</label>
-                      <input type="text" class="form-control" id="obs" name="obs" placeholder="..." required>
+                      <input type="text" class="form-control" id="obs" name="obs" placeholder="...">
                     </div>
                   </div>
                 </div>
-                <div class="col-12 mt-5 text-sm-center"><button type="submit" class="btn btn-success">Finalizar Compra</button></div>
+                <div class="col-12 mt-5 text-sm-center"><button type="submit" class="btn btn-primary">Finalizar Compra</button></div>
               </form>
             </div>
-          </div>
-
-                    
+          </div> 
         </div>
         <!--Relatório de compras-->
         <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
@@ -245,7 +279,7 @@
   <div id="dropDownSelect1"></div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 
-  <!-- Funções para inserção de Produtos na lista -->
+
   <script src="./purches_sales.js"></script>
 </body>
 </html>
